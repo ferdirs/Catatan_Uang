@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPageActivity">
+    android:adjustViewBounds="true"
+    android:background="#EBEBEB"
+    >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainPageActivity"
+    android:id="@+id/container_main"
+    android:clickable="true"
+    android:focusable="true">
 
 
     <ImageView
@@ -14,16 +24,18 @@
         android:src="@drawable/background_intro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="true"/>
 
     <ImageView
         android:id="@+id/bg_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/white_line"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_women"
@@ -51,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="85dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,17 +72,24 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_women"
         android:layout_marginHorizontal="60dp"
         android:text="Login"
-        android:textColor="#39632F"/>
+        android:textColor="#39632F"
+        android:background="@drawable/bck_button"
+        android:layout_marginTop="10dp"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_login"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="60dp"
         android:text="Register"
-        android:textColor="#39632F"/>
+        android:textColor="#39632F"
+        android:background="@drawable/bck_button"
+        android:layout_marginVertical="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -11,7 +11,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     private val realAllData: LiveData<List<User>>
     private val repository: UserRepository
-
+    private val userDao = UserDatabase.getDatabase(application).userDao()
     init {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
@@ -21,6 +21,12 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun addUser(user: User){
         viewModelScope.launch(Dispatchers.IO){
             repository.addUser(user)
+        }
+    }
+
+    fun login(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userDao.getUserByUsernameAndPassword(username, password)
         }
     }
 

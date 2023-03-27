@@ -30,9 +30,11 @@ class RegisterActivity : AppCompatActivity() {
             with(binding){
                 btRegister2.setOnClickListener {
                     insertDataToDatabase()
+                    finish()
                 }
                 btLogin2.setOnClickListener {
                     startActivity(Intent(applicationContext, LoginActivity::class.java))
+                    finish()
                 }
             }
         }

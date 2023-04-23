@@ -3,7 +3,13 @@ package id.co.sistema.catatanlhj
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import id.co.sistema.catatanlhj.ROOM.UserDatabase
 import id.co.sistema.catatanlhj.databinding.ActivityLoginBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -15,13 +21,31 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         login()
+
     }
 
+
+    private suspend fun authLogin(){
+        val userDao = UserDatabase.getDatabase(applicationContext).userDao()
+        val user = userDao.login(binding.etUsernameLogin.text.toString(), binding.etPasswordLogin.text.toString())
+        runOnUiThread {
+            if (user != null){
+                startActivity(Intent(applicationContext , MainMenuActivity::class.java))
+            }else{
+                Toast.makeText(applicationContext, "Password/Username anda salah", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     private fun login(){
         binding.let {
             with(binding){
-                btLogin.setOnClickListener {startActivity(Intent(applicationContext , MainMenuActivity::class.java)) }
+                btLogin.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        authLogin()
+                    }
+                }
+                btRegister.setOnClickListener { startActivity(Intent(applicationContext, RegisterActivity::class.java)) }
             }
         }
     }

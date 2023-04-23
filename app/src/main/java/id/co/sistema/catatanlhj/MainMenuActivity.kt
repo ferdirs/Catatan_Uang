@@ -18,6 +18,7 @@ class MainMenuActivity : AppCompatActivity() {
 
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val navView: BottomNavigationView = binding.navView
 

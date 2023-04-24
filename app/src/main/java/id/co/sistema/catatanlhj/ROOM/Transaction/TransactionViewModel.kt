@@ -22,6 +22,7 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
     init {
         val transDao = TransactionDatabase.getDatabase(application).TransactionDao()
         repository = TransactionRepository(transDao)
+
         readAllTrans = repository.readAllData
         readAllIncome = repository.readIncome
         readAllSpend = repository.readSpend

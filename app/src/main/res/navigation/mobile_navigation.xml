@@ -9,13 +9,24 @@
         android:id="@+id/navigation_home"
         android:name="id.co.sistema.catatanlhj.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="id.co.sistema.catatanlhj.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_updateStockFragment"
+            app:destination="@id/updateStockFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -28,4 +39,16 @@
         android:name="id.co.sistema.catatanlhj.TransactionFragment"
         android:label="Transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/updateStockFragment"
+        android:name="id.co.sistema.catatanlhj.ui.dashboard.UpdateStockFragment"
+        android:label="fragment_update_stock"
+        tools:layout="@layout/fragment_update_stock" >
+        <action
+            android:id="@+id/action_updateStockFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <argument
+            android:name="currentStock"
+            app:argType="id.co.sistema.catatanlhj.ROOM.Stok.Stock" />
+    </fragment>
 </navigation>

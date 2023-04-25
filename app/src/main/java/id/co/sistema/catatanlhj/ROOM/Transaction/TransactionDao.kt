@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import id.co.sistema.catatanlhj.ROOM.User
 
 @Dao
 interface TransactionDao {
@@ -27,4 +26,10 @@ interface TransactionDao {
 
     @Query("DELETE from trans_table")
     suspend fun deleteAll()
+
+    @Query("SELECT COUNT(*) as spend FROM trans_table WHERE spend > 0")
+    fun getCount(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) as id ,COUNT(*) as income, COUNT(*) as spend , COUNT(*) as notes ,COUNT(*) as jenis , COUNT(*) as nominal from trans_table WHERE spend > 0 ")
+    fun getCountBoth(): LiveData<Transaction>
 }

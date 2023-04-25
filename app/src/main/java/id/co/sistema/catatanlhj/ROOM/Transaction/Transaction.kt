@@ -9,7 +9,7 @@ data class Transaction(
     val id: Int,
     val income: Int = 0,
     val spend: Int = 0,
-    val notes: String,
-    val jenis: String,
+    val notes: String  ,
+    val jenis: String ,
     val nominal: Int = 0
 )

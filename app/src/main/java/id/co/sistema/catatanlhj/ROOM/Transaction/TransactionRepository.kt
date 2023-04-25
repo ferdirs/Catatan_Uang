@@ -18,6 +18,10 @@ class TransactionRepository(private val transDao: TransactionDao) {
 
     val readSaldo:LiveData<Int> = transDao.readSaldo()
 
+    val countSpend:LiveData<Int> = transDao.getCount()
+
+    val countBoth: LiveData<Transaction> = transDao.getCountBoth()
+
    suspend fun deleteAll(){
         transDao.deleteAll()
     }

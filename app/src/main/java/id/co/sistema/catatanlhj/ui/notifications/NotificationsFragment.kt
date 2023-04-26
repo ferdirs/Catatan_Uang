@@ -28,13 +28,16 @@ import kotlin.properties.Delegates
 
 class NotificationsFragment : Fragment() {
 
+    private lateinit var mTransViewModel: TransactionViewModel
+
+    private var income: Float = 0f
+    private var spend: Float = 0f
+
     private var _binding: FragmentNotificationsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private lateinit var mTransViewModel: TransactionViewModel
 
 
     override fun onCreateView(
@@ -42,19 +45,25 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pieChart()
+
+        mTransViewModel = ViewModelProvider(this@NotificationsFragment).get(TransactionViewModel::class.java)
+        mTransViewModel.countIncome().observe(viewLifecycleOwner,{
+            income = it.toFloat()
+        })
+        mTransViewModel.countSpend().observe(viewLifecycleOwner, {
+            spend = it.toFloat()
+            pieChart()
+        })
 
     }
 
@@ -62,7 +71,6 @@ class NotificationsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
     private fun pieChart(){
@@ -94,49 +102,44 @@ class NotificationsFragment : Fragment() {
 
 
 
-            mTransViewModel = ViewModelProvider(this@NotificationsFragment).get(TransactionViewModel::class.java)
-            mTransViewModel.countBoth().observe(viewLifecycleOwner, {
+            // on below line we are creating array list and
+            // adding data to it to display in pie chart
+            val entries: ArrayList<PieEntry> = ArrayList()
+            entries.add(PieEntry(income))
+            entries.add(PieEntry(spend))
+            val dataSet = PieDataSet(entries, "Mobile OS")
 
-                // on below line we are creating array list and
-                // adding data to it to display in pie chart
-                val entries: ArrayList<PieEntry> = ArrayList()
-
-                entries.add(PieEntry(it.spend.toFloat()))
-                entries.add(PieEntry(it.income.toFloat()))
-                val dataSet = PieDataSet(entries, "Mobile OS")
 
                 // on below line we are setting icons.
-                dataSet.setDrawIcons(false)
+            dataSet.setDrawIcons(false)
 
                 // on below line we are setting slice for pie
-                dataSet.sliceSpace = 3f
-                dataSet.iconsOffset = MPPointF(0f, 40f)
-                dataSet.selectionShift = 5f
+            dataSet.sliceSpace = 3f
+            dataSet.iconsOffset = MPPointF(0f, 40f)
+            dataSet.selectionShift = 5f
 
-                val colors: ArrayList<Int> = ArrayList()
-                colors.add(resources.getColor(R.color.green))
-                colors.add(resources.getColor(R.color.red))
+            val colors: ArrayList<Int> = ArrayList()
+            colors.add(resources.getColor(R.color.green))
+            colors.add(resources.getColor(R.color.red))
 
 
-                dataSet.colors = colors
+            dataSet.colors = colors
 
                 // on below line we are setting pie data set
-                val data = PieData(dataSet)
-                data.setValueFormatter(PercentFormatter())
-                data.setValueTextSize(15f)
-                data.setValueTypeface(Typeface.DEFAULT_BOLD)
-                data.setValueTextColor(Color.WHITE)
-                pieChart.setData(data)
+            val data = PieData(dataSet)
+            data.setValueFormatter(PercentFormatter())
+            data.setValueTextSize(15f)
+            data.setValueTypeface(Typeface.DEFAULT_BOLD)
+            data.setValueTextColor(Color.WHITE)
+            pieChart.setData(data)
 
                 // undo all highlights
-                pieChart.highlightValues(null)
+            pieChart.highlightValues(null)
 
                 // loading chart
-                pieChart.invalidate()
-
-            })
-
+            pieChart.invalidate()
 
         }
     }
+
 }

@@ -18,7 +18,9 @@ class TransactionRepository(private val transDao: TransactionDao) {
 
     val readSaldo:LiveData<Int> = transDao.readSaldo()
 
-    val countSpend:LiveData<Int> = transDao.getCount()
+    val countIncome:LiveData<Int> = transDao.getCount()
+
+    val countSpend: LiveData<Int> = transDao.getCountSpend()
 
     val countBoth: LiveData<Transaction> = transDao.getCountBoth()
 

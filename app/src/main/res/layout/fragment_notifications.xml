@@ -64,12 +64,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="R"
+                        android:text="Income"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
 
-                <!--Linear layout to display Python-->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
@@ -82,11 +82,11 @@
                         android:layout_height="match_parent"
                         android:background="@color/red"/>
 
-                    <!--Text view to display python text -->
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Python"
+                        android:text="Spend"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
@@ -100,7 +100,7 @@
 
 
     <!-- Another Card view for displaying -->
-    <!-- Use of programming languages -->
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="260dp"
@@ -114,14 +114,14 @@
         android:id="@+id/details">
 
         <!--Relative layout to display -->
-        <!-- use of programming languages -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <!--Text view to use of -->
-            <!-- programming languages text-->
+           
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

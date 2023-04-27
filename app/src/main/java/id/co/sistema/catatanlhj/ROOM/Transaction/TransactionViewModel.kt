@@ -21,6 +21,7 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
     private val repository: TransactionRepository
     private val countBoth: LiveData<Transaction>
     private val countSpend: LiveData<Int>
+    private val countTrans: LiveData<Int>
 
     init {
         val transDao = TransactionDatabase.getDatabase(application).TransactionDao()
@@ -33,6 +34,7 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
         countIncome = repository.countIncome
         countBoth = repository.countBoth
         countSpend = repository.countSpend
+        countTrans = repository.countTrans
     }
 
     fun addTrans(trans: Transaction){
@@ -73,6 +75,10 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
 
     fun countSpend():LiveData<Int>{
         return countSpend
+    }
+
+    fun countTrans():LiveData<Int>{
+        return countTrans
     }
 
 }

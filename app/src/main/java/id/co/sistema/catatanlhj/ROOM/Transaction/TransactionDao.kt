@@ -33,6 +33,9 @@ interface TransactionDao {
     @Query("SELECT COUNT(*) as spend FROM trans_table WHERE spend > 0")
     fun getCountSpend(): LiveData<Int>
 
+    @Query("SELECT COUNT(*) as id FROM trans_table")
+    fun getCountTrans(): LiveData<Int>
+
     @Query("SELECT COUNT(*) as id ,COUNT(*) as income, COUNT(*) as spend , COUNT(*) as notes ,COUNT(*) as jenis , COUNT(*) as nominal from trans_table WHERE income > 0 ")
     fun getCountBoth(): LiveData<Transaction>
 }

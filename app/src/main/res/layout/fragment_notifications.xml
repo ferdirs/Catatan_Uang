@@ -6,13 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment">
 
+
+    <TextView
+        android:id="@+id/tv_judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold"
+      />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewGraph"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="120dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp">
 
@@ -51,7 +64,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical">
 
                     <!--View to display the yellow color icon-->
@@ -63,7 +76,7 @@
                     <!--Text view to display R -->
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:text="Income"
                         android:paddingLeft="10dp"/>
 
@@ -72,7 +85,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
@@ -85,12 +98,11 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:text="Spend"
                         android:paddingLeft="10dp"/>
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -125,97 +137,39 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Income and Spend (In Percentage):"
+                android:text="Total transaksi pada hari ini"
                 android:textSize="23sp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:textAlignment="center"
                 android:layout_marginTop="20dp"/>
 
-            <!--View to display the line-->
-
-
-            <RelativeLayout
+            <TextView
+                android:id="@+id/tv_totaltrans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#85857A"
+                tools:text="23"
+                android:textAlignment="center"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"/>
 
-                <!--Text view to display R -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Spend"
-                    android:textSize="18sp"/>
-
-                <!--Text view to display the -->
-                <!-- percentage of programming language -->
-                <!-- used. For now default set to 0-->
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/tvR"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textColor="@color/red"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-light"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-
-            <!--View to display the line-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/red"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="Transaksi"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Income"
-                    android:textSize="18sp"/>
-
-                <!--Text view to display the percentage -->
-                <!-- of programming language used. -->
-                <!-- For now default set to 0-->
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/tvPython"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textColor="@color/green"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-light"
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/green"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
-
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"/>
 
         </LinearLayout>
 

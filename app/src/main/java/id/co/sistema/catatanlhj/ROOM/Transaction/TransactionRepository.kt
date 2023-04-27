@@ -24,6 +24,8 @@ class TransactionRepository(private val transDao: TransactionDao) {
 
     val countBoth: LiveData<Transaction> = transDao.getCountBoth()
 
+    val countTrans: LiveData<Int> = transDao.getCountTrans()
+
    suspend fun deleteAll(){
         transDao.deleteAll()
     }

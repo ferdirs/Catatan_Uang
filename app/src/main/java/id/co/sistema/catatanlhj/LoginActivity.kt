@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         runOnUiThread {
             if (user != null){
                 startActivity(Intent(applicationContext , MainMenuActivity::class.java))
+                finish()
             }else{
                 Toast.makeText(applicationContext, "Password/Username anda salah", Toast.LENGTH_SHORT).show()
             }

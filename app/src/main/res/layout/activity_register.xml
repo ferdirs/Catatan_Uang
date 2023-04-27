@@ -92,7 +92,7 @@
             android:layout_marginTop="8dp"
             android:textColor="#a2a4b5"
             android:hint="Enter Your Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="16sp"/>
 
         <TextView
@@ -104,6 +104,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="#2F3363"
+            android:inputType=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_password_register"
             android:layout_marginTop="32dp"/>
@@ -120,7 +121,7 @@
             android:layout_marginTop="8dp"
             android:textColor="#a2a4b5"
             android:hint="Enter Your Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textSize="16sp"/>
 
         <androidx.appcompat.widget.AppCompatButton

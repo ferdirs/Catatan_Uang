@@ -65,6 +65,11 @@ class NotificationsFragment : Fragment() {
             pieChart()
         })
 
+        mTransViewModel.countTrans().observe(viewLifecycleOwner,{
+            binding.tvTotaltrans.text = it.toString()
+        })
+
+        binding.tvJudul.text = "Pie Chart Dari Seluruh Transaksi Hari ini"
     }
 
     override fun onDestroyView() {

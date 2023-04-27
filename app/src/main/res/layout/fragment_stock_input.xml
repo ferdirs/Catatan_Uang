@@ -15,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:hint="Harga Barang Satuan"
         android:minHeight="48dp"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nama_barang" />
@@ -74,6 +75,7 @@
         android:layout_marginTop="8dp"
         android:hint="Jumlah Stock"
         android:minHeight="48dp"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_harga_barang" />

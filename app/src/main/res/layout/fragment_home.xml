@@ -23,7 +23,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:text="Selamat Datang Kembali"/>
     </LinearLayout>
 
@@ -39,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:paddingHorizontal="8dp"
             android:text="Saldo"/>
         <TextView
@@ -46,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:text="Rp 0"/>
     </LinearLayout>
 

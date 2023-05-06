@@ -3,6 +3,7 @@ package id.co.sistema.catatanlhj
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Toast
 import id.co.sistema.catatanlhj.ROOM.UserDatabase
 import id.co.sistema.catatanlhj.databinding.ActivityLoginBinding
@@ -36,6 +37,12 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Password/Username anda salah", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun inputCheck(userName: String, password: String): Boolean{
+
+        return !(TextUtils.isEmpty(userName) && TextUtils.isEmpty(password))
+
     }
 
     private fun login(){

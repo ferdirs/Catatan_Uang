@@ -50,7 +50,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_save_trans"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="80dp"
         android:layout_marginVertical="12dp"
@@ -68,7 +68,7 @@
 
     <RadioGroup
         android:id="@+id/rd_group"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="80dp"
         android:layout_marginVertical="12dp"

@@ -44,17 +44,20 @@ class StockInputFragment : DialogFragment() {
     }
 
     private fun insertStock(){
-        val nama = binding.etNamaBarang.text.toString()
-        val harga = binding.etHargaBarang.text.toString().toInt()
-        val quan = binding.etKuantitas.text.toString().toInt()
+        if (binding.etNamaBarang.text.isNotEmpty() && binding.etHargaBarang.text.isNotEmpty() && binding.etKuantitas.text.isNotEmpty()) {
+            val nama = binding.etNamaBarang.text.toString()
+            val harga = binding.etHargaBarang.text.toString().toInt()
+            val quan = binding.etKuantitas.text.toString().toInt()
 
-        if (inputCheck(nama,harga,quan)){
-            val stock = Stock(nama_item = nama , harga_item = harga, quantity = quan, id = 0)
-            mStockViewModel.addStock(stock)
+            if (inputCheck(nama, harga, quan)) {
+                val stock = Stock(nama_item = nama, harga_item = harga, quantity = quan, id = 0)
+                mStockViewModel.addStock(stock)
+            } else {
+                Toast.makeText(requireContext(), "Check again", Toast.LENGTH_SHORT).show()
+            }
         }else{
             Toast.makeText(requireContext(), "Check again", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun inputCheck(nama : String, harga: Int, quan: Int): Boolean{

@@ -52,27 +52,45 @@ class TrasactionInputFragment : DialogFragment() {
     }
 
     private fun insertTrans(){
+        if (binding.etNominal.text.isNotEmpty() && binding.etNote.text.isNotEmpty() && radio.isNotEmpty()) {
+            val nominal = binding.etNominal.text.toString().toInt()
+            val note = binding.etNote.text.toString()
 
-        val nominal = binding.etNominal.text.toString().toInt()
-        val note = binding.etNote.text.toString()
 
-        if (inputCheck(nominal,note)){
-            if (radio.equals("Income")){
-                val trans = Transaction(nominal = nominal, notes = note, jenis = radio, id = 0, income = nominal )
-                mTransViewModel.addTrans(trans)
-                clearText()
-                Log.d("coba", "insertTrans: ${trans.income}")
-                Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
-            }else{
-                val trans = Transaction(nominal = nominal, notes = note, jenis = radio, id = 0, spend = nominal )
-                mTransViewModel.addTrans(trans)
-                clearText()
-                Log.d("coba", "insertTrans: ${trans.spend}")
-                Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
+            if (note.isNotEmpty() && nominal.toString().isNotEmpty() && radio.isNotEmpty()) {
+                if (radio.equals("Income")) {
+                    val trans = Transaction(
+                        nominal = nominal,
+                        notes = note,
+                        jenis = radio,
+                        id = 0,
+                        income = nominal
+                    )
+                    mTransViewModel.addTrans(trans)
+                    clearText()
+                    Log.d("coba", "insertTrans: ${trans.income}")
+                    Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    val trans = Transaction(
+                        nominal = nominal,
+                        notes = note,
+                        jenis = radio,
+                        id = 0,
+                        spend = nominal
+                    )
+                    mTransViewModel.addTrans(trans)
+                    clearText()
+                    Log.d("coba", "insertTrans: ${trans.spend}")
+                    Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Check again", Toast.LENGTH_SHORT).show()
             }
-
         }else{
             Toast.makeText(requireContext(), "Check again", Toast.LENGTH_SHORT).show()
+
         }
     }
 
@@ -80,9 +98,7 @@ class TrasactionInputFragment : DialogFragment() {
     
 
     private fun inputCheck(nominal : Int, note: String): Boolean{
-
         return !(TextUtils.isEmpty(nominal.toString()) && TextUtils.isEmpty(note))
-
     }
 
     private fun clearText(){

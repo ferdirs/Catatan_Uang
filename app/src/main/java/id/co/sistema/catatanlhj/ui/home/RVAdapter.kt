@@ -4,15 +4,19 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import id.co.sistema.catatanlhj.R
 import id.co.sistema.catatanlhj.ROOM.Transaction.Transaction
+import id.co.sistema.catatanlhj.ROOM.Transaction.TransactionViewModel
 import id.co.sistema.catatanlhj.databinding.ItemTransactionListBinding
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class RVAdapter:RecyclerView.Adapter<RVAdapter.MyViewHolder>()  {
+class RVAdapter():RecyclerView.Adapter<RVAdapter.MyViewHolder>()  {
 
     private var listUserResponse = ArrayList<Transaction>()
 
@@ -55,10 +59,17 @@ class RVAdapter:RecyclerView.Adapter<RVAdapter.MyViewHolder>()  {
         holder.bind(listUserResponse[position])
     }
 
+    fun getTrans(position: Int):Transaction{
+        return listUserResponse.get(position)
+    }
+
     override fun getItemCount(): Int {
         return listUserResponse.size
     }
 
+    interface ClickListener{
+        fun onItemClick(transaction: Transaction)
+    }
 
 
 }

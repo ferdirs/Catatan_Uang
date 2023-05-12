@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import id.co.sistema.catatanlhj.R
 import id.co.sistema.catatanlhj.ROOM.Transaction.TransactionViewModel
 import id.co.sistema.catatanlhj.databinding.FragmentHomeBinding
@@ -51,39 +54,54 @@ class HomeFragment : Fragment() {
         binding.rvMain.layoutManager = layoutManager
         binding.rvMain.adapter = adapter
         mTransViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-        mTransViewModel.getAllTrans().observe(viewLifecycleOwner, {names ->
+        mTransViewModel.getAllTrans().observe(viewLifecycleOwner) { names ->
             names.let {
                 adapter.addDataToList(names)
             }
-        })
-
-        mTransViewModel.getAllIncome().observe(viewLifecycleOwner,{total ->
-            if (total!=null){
+        }
+        mTransViewModel.getAllIncome().observe(viewLifecycleOwner) { total ->
+            if (total != null) {
                 binding.inputIncome.text = format(total)
-            }else{
+            } else {
                 binding.inputIncome.text = "Rp 0"
             }
-
-        })
-
-        mTransViewModel.getAllSpend().observe(viewLifecycleOwner, {total ->
-            if (total!=null){
+        }
+        mTransViewModel.getAllSpend().observe(viewLifecycleOwner) { total ->
+            if (total != null) {
                 binding.inputSpend.text = format(total)
-            }else{
+            } else {
                 binding.inputSpend.text = "Rp 0"
             }
-        })
-
-        mTransViewModel.getTotal().observe(viewLifecycleOwner,{total ->
-            if (total!=null){
+        }
+        mTransViewModel.getTotal().observe(viewLifecycleOwner) { total ->
+            if (total != null) {
                 binding.tvSaldo.text = format(total)
-            }else{
+            } else {
                 binding.tvSaldo.text = "Rp 0"
             }
-        })
-
+        }
         binding.ivDelete.setOnClickListener {
             mTransViewModel.deleteAll()
+        }
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                mTransViewModel.deleteEntry(adapter.getTrans(viewHolder.adapterPosition))
+            }
+        }
+        ItemTouchHelper(itemTouchHelperCallback).apply {
+            attachToRecyclerView(binding.rvMain)
         }
     }
 

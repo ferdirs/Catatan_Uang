@@ -54,21 +54,18 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         mTransViewModel = ViewModelProvider(this@NotificationsFragment).get(TransactionViewModel::class.java)
-        mTransViewModel.countIncome().observe(viewLifecycleOwner,{
+        mTransViewModel.countIncome().observe(viewLifecycleOwner) {
             income = it.toFloat()
-        })
-        mTransViewModel.countSpend().observe(viewLifecycleOwner, {
+        }
+        mTransViewModel.countSpend().observe(viewLifecycleOwner) {
             spend = it.toFloat()
             pieChart()
-        })
+        }
 
-        mTransViewModel.countTrans().observe(viewLifecycleOwner,{
+        mTransViewModel.countTrans().observe(viewLifecycleOwner) {
             binding.tvTotaltrans.text = it.toString()
-        })
-
+        }
         binding.tvJudul.text = "Pie Chart Dari Seluruh Transaksi Hari ini"
     }
 
@@ -106,7 +103,6 @@ class NotificationsFragment : Fragment() {
             pieChart.setEntryLabelTextSize(12f)
 
 
-
             // on below line we are creating array list and
             // adding data to it to display in pie chart
             val entries: ArrayList<PieEntry> = ArrayList()
@@ -114,11 +110,10 @@ class NotificationsFragment : Fragment() {
             entries.add(PieEntry(spend))
             val dataSet = PieDataSet(entries, "Mobile OS")
 
-
-                // on below line we are setting icons.
+            // on below line we are setting icons.
             dataSet.setDrawIcons(false)
 
-                // on below line we are setting slice for pie
+            // on below line we are setting slice for pie
             dataSet.sliceSpace = 3f
             dataSet.iconsOffset = MPPointF(0f, 40f)
             dataSet.selectionShift = 5f
@@ -127,21 +122,17 @@ class NotificationsFragment : Fragment() {
             colors.add(resources.getColor(R.color.green))
             colors.add(resources.getColor(R.color.red))
 
-
             dataSet.colors = colors
-
-                // on below line we are setting pie data set
+            // on below line we are setting pie data set
             val data = PieData(dataSet)
             data.setValueFormatter(PercentFormatter())
             data.setValueTextSize(15f)
             data.setValueTypeface(Typeface.DEFAULT_BOLD)
             data.setValueTextColor(Color.WHITE)
             pieChart.setData(data)
-
-                // undo all highlights
+            // undo all highlights
             pieChart.highlightValues(null)
-
-                // loading chart
+            // loading chart
             pieChart.invalidate()
 
         }

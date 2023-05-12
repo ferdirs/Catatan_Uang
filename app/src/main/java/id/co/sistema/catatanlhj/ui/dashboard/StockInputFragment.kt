@@ -31,8 +31,6 @@ class StockInputFragment : DialogFragment() {
         _binding = FragmentStockInputBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,7 +64,6 @@ class StockInputFragment : DialogFragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             StockInputFragment().apply {

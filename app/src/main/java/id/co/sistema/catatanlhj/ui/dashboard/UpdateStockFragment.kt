@@ -40,6 +40,7 @@ class UpdateStockFragment : Fragment() {
         binding.etHargaBarang.setText(args.currentStock.harga_item.toString())
         binding.etKuantitas.setText(args.currentStock.quantity.toString())
 
+
         binding.btUpdateStock.setOnClickListener { updateItem() }
 
         binding.btDeleteStock.setOnClickListener { deleteUser() }

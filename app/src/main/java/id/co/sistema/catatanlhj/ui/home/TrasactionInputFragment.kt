@@ -55,8 +55,6 @@ class TrasactionInputFragment : DialogFragment() {
         if (binding.etNominal.text.isNotEmpty() && binding.etNote.text.isNotEmpty() && radio.isNotEmpty()) {
             val nominal = binding.etNominal.text.toString().toInt()
             val note = binding.etNote.text.toString()
-
-
             if (note.isNotEmpty() && nominal.toString().isNotEmpty() && radio.isNotEmpty()) {
                 if (radio.equals("Income")) {
                     val trans = Transaction(
@@ -90,7 +88,6 @@ class TrasactionInputFragment : DialogFragment() {
             }
         }else{
             Toast.makeText(requireContext(), "Check again", Toast.LENGTH_SHORT).show()
-
         }
     }
 

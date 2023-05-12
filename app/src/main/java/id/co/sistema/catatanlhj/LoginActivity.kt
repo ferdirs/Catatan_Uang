@@ -27,14 +27,16 @@ class LoginActivity : AppCompatActivity() {
 
 
     private suspend fun authLogin(){
-        val userDao = UserDatabase.getDatabase(applicationContext).userDao()
-        val user = userDao.login(binding.etUsernameLogin.text.toString(), binding.etPasswordLogin.text.toString())
-        runOnUiThread {
-            if (user != null){
-                startActivity(Intent(applicationContext , MainMenuActivity::class.java))
-                finish()
-            }else{
-                Toast.makeText(applicationContext, "Password/Username anda salah", Toast.LENGTH_SHORT).show()
+        if (binding.etUsernameLogin.text.isNotEmpty() && binding.etPasswordLogin.text.isNotEmpty()){
+            val userDao = UserDatabase.getDatabase(applicationContext).userDao()
+            val user = userDao.login(binding.etUsernameLogin.text.toString(), binding.etPasswordLogin.text.toString())
+            runOnUiThread {
+                if (user != null){
+                    startActivity(Intent(applicationContext , MainMenuActivity::class.java))
+                    finish()
+                }else{
+                    Toast.makeText(applicationContext, "Password/Username anda salah", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

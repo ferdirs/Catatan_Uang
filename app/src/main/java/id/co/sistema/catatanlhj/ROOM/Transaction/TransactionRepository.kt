@@ -29,4 +29,6 @@ class TransactionRepository(private val transDao: TransactionDao) {
    suspend fun deleteAll(){
         transDao.deleteAll()
     }
+
+    suspend fun deleteEntry(transaction: Transaction) = transDao.deleteEntry(transaction)
 }

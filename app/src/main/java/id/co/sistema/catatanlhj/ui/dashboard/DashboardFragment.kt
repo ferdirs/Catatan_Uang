@@ -50,9 +50,9 @@ class DashboardFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvMainStock.layoutManager = layoutManager
         binding.rvMainStock.adapter = adapter
-        mStockViewModel.getAllStock().observe(viewLifecycleOwner,{stock->
+        mStockViewModel.getAllStock().observe(viewLifecycleOwner) { stock ->
             adapter.addDataToList(stock)
-        })
+        }
 
         setUpSearchView()
 
@@ -70,7 +70,6 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setUpSearchView() {
-
         with(binding) {
             searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -85,18 +84,16 @@ class DashboardFragment : Fragment() {
                     }
                     return true
                 }
-
             })
-
         }
     }
 
     private fun searchDatabase(query: String){
         val searchQuery = "%$query%"
-        mStockViewModel.searchDatabase(searchQuery).observe(this, {
+        mStockViewModel.searchDatabase(searchQuery).observe(this) {
             it.let {
                 adapter.addDataToList(it)
             }
-        })
+        }
     }
 }

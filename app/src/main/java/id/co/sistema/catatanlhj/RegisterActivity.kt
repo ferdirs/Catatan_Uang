@@ -83,7 +83,6 @@ class RegisterActivity : AppCompatActivity() {
             override fun onAuthenticationFailed() {
                 super.onAuthenticationFailed()
                 Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT).show()
-
             }
         })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
@@ -91,7 +90,6 @@ class RegisterActivity : AppCompatActivity() {
             .setSubtitle("Login using fingerprint")
             .setNegativeButtonText("Use app password instead")
             .build()
-
         biometricPrompt.authenticate(promptInfo)
     }
 }

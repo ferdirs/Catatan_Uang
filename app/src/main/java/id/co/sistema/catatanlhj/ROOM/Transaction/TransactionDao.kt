@@ -2,6 +2,7 @@ package id.co.sistema.catatanlhj.ROOM.Transaction
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -38,4 +39,7 @@ interface TransactionDao {
 
     @Query("SELECT COUNT(*) as id ,COUNT(*) as income, COUNT(*) as spend , COUNT(*) as notes ,COUNT(*) as jenis , COUNT(*) as nominal from trans_table WHERE income > 0 ")
     fun getCountBoth(): LiveData<Transaction>
+
+    @Delete
+    suspend fun deleteEntry(transaction: Transaction)
 }

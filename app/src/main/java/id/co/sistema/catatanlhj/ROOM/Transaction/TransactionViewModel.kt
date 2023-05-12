@@ -26,7 +26,6 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
     init {
         val transDao = TransactionDatabase.getDatabase(application).TransactionDao()
         repository = TransactionRepository(transDao)
-
         readAllTrans = repository.readAllData
         readAllIncome = repository.readIncome
         readAllSpend = repository.readSpend
@@ -69,16 +68,16 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
         return countIncome
     }
 
-    fun countBoth():LiveData<Transaction>{
-        return countBoth
-    }
-
     fun countSpend():LiveData<Int>{
         return countSpend
     }
 
     fun countTrans():LiveData<Int>{
         return countTrans
+    }
+
+    fun deleteEntry(trans: Transaction) = viewModelScope.launch {
+        repository.deleteEntry(trans)
     }
 
 }
